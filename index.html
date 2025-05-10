@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amar Cheema | Front-End Developer</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #1a1a1a;
+      --accent: #00ffe7;
+      --accent-soft: rgba(0, 255, 231, 0.2);
+      --text: #e0e0e0;
+      --muted: #888;
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: var(--card);
+      box-shadow: 0 0 10px rgba(0, 255, 231, 0.05);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: none;
+    }
+
+    .nav-links li {
+      margin: 1rem 0;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .nav-toggle {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .nav-links.show {
+      display: block;
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      background: var(--card);
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 0 20px rgba(0, 255, 231, 0.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    header img.profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 20px var(--accent-soft);
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-soft);
+    }
+
+    header p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(0, 255, 231, 0.1);
+      box-shadow: inset 0 2px 10px rgba(0, 255, 231, 0.05);
+      margin-top: 3rem;
+      padding-top: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .skills, .projects {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(0, 255, 231, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 255, 231, 0.15);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: var(--text);
+      opacity: 0.9;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #1f1f1f, #111);
+      margin-bottom: 1rem;
+      object-fit: cover;
+    }
+
+    .skills-logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skills-logos img {
+      width: 50px;
+      height: 50px;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 6px;
+      background: rgba(0, 255, 231, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 231, 0.2);
+    }
+
+    .skills-logos img:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .testimonial {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 0;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(0, 255, 231, 0.05);
+      max-width: 500px;
+      text-align: center;
+      margin: 0 1rem;
+      display: none;
+    }
+
+    .testimonial-card.active {
+      display: block;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .testimonial-card cite {
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .contact {
+      text-align: center;
+      padding-top: 2rem;
+    }
+
+    .contact a {
+      margin: 0 1rem;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 2rem 1rem;
+    }
+
+    /* Blog Section */
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 255, 231, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .blog-card img.blog-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 20px rgba(0, 255, 231, 0.2);
+    }
+
+    .read-more-btn {
+      margin-top: 1rem;
+      color: var(--accent);
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        gap: 2.5rem;
+      }
+      .skills, .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        display: flex !important;
+        gap: 1.5rem;
+        position: static;
+        background: none;
+        padding: 0;
+        box-shadow: none;
+      }
+      .nav-toggle {
+        display: none;
+      }
+      .blog-card {
+        flex-direction: row;
+        text-align: left;
+        gap: 1.5rem;
+      }
+      .blog-card img.blog-img {
+        width: 250px;
+        height: 160px;
+        flex-shrink: 0;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .skills, .projects {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">Amar</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <img src="https://i.postimg.cc/XvDS6Hqh/profile-picture.jpg" alt="Amar Cheema Profile Picture" class="profile-img" />
+    <h1>Amar Cheema</h1>
+    <p>Front-End Developer – Building responsive, stunning user interfaces</p>
+  </header>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>I'm Amar Cheema, a passionate front-end developer with expertise in HTML, CSS, JavaScript, and React. I specialize in creating beautiful, responsive websites with an emphasis on performance and user experience. I thrive on challenges and always strive to build the best solutions.</p>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" alt="Node.js" />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxF6SSiF7OYcWRGVp3TVaX7FUKsqm54fodcg&s" alt="Bootstrap" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2048px-Git_icon.svg.png" alt="Git" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png" alt="Vue.js" />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1xZxgwNzWsZfIeelQWZX326l8MQ3Ox4TfpA&s" alt="Express.js" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" alt="Python" />
+    </div>
+  </section>
+<section id="blogs">
+  <h2 class="section-title">Latest Blogs</h2>
+  <div class="blog-list">
+    <div class="blog-card">
+      <img src="https://static.vecteezy.com/system/resources/previews/002/139/496/non_2x/web-development-flat-illustrations-for-websites-programming-marketing-materials-business-presentations-online-advertising-and-mobile-applications-vector.jpg" alt="Blog 1 Image" class="blog-img">
+      <div class="blog-info">
+        <h3>Why Responsive Design Is No Longer Optional</h3>
+        <p>If you're a web developer, you’ve probably heard a lot about responsive design. It ensures your site looks and works great across all devices.</p>
+        <a href="blog1.html" class="read-more-btn">Read More</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="https://www.qodo.ai/wp-content/uploads/2024/09/post-best-ai-code-generators.jpg" alt="Blog 2 Image" class="blog-img">
+      <div class="blog-info">
+        <h3>Why AI Isn’t Replacing Devs Any Time Soon</h3>
+        <p>AI tools are impressive, but development is more than code—it’s about people, creativity, and solving real-world problems.</p>
+        <a href="blog2.html" class="read-more-btn">Read More</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20191216192618/7-Tips-To-Write-Clean-And-Better-Code-in-2020.png" alt="Blog 3 Image" class="blog-img">
+      <div class="blog-info">
+        <h3>Why Clean Code Matters (And How It Makes Your Life Easier)</h3>
+        <p>Clean code is readable, maintainable, and scalable. Learn how writing clean code can save you hours of headaches later.</p>
+        <a href="blog3.html" class="read-more-btn">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="testimonials" class="testimonial">
+  <div class="testimonial-card active">
+    <blockquote>"Amar is an exceptional developer who brings a lot of creativity to the table. Highly recommended!"</blockquote>
+    <cite>- Sarah Johnson, CEO at TechNova</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"Professional, fast, and reliable. Amar transformed our project vision into reality!"</blockquote>
+    <cite>- James Carter, Founder at WebVerse</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"Working with Amar was a game changer. His problem-solving skills are top-notch, and the results speak for themselves."</blockquote>
+    <cite>- Laura Anderson, Product Manager at CodeFusion</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"Amar’s attention to detail and his ability to bring innovative ideas to the table was a huge asset to our project."</blockquote>
+    <cite>- Michael Smith, CTO at ByteWorks</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"The professionalism and speed with which Amar worked on our website exceeded our expectations. Would definitely work with him again!"</blockquote>
+    <cite>- Emma Davis, Marketing Director at ShopMore</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"I’ve worked with many developers, but Amar’s communication and understanding of the project were second to none. Highly recommended!"</blockquote>
+    <cite>- David Lee, CEO at CreativeSolutions</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"Amar delivered an amazing user interface for our application, and his work greatly improved our user experience!"</blockquote>
+    <cite>- Olivia Clark, UX Designer at CloudTech</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"Not only is Amar a great developer, but his collaborative spirit and dedication to quality are truly impressive!"</blockquote>
+    <cite>- Robert Martinez, Senior Developer at SoftWareHouse</cite>
+  </div>
+</section>
+
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects grid">
+      <div class="card">
+        <img class="project-img" src="https://imgproxy.epicpxls.com/pQqUZqjRA3n7NF1bKfsrt5mYb1xhcIhpEvSwYktcx0g/rs:fill:800:600:0/g:no/aHR0cHM6Ly9pdGVt/cy5lcGljcHhscy5j/b20vdXBsb2Fkcy9w/aG90by83ZTc5ZmNl/ZDE2Y2Y0ZDEwMDQx/YzA5ZWUyNGRjOWFk/ZQ.jpg" alt="Portfolio project screenshot" />
+        <h3>Personal Portfolio</h3>
+        <p>A sleek and animated portfolio site showcasing professional skills and projects.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="card">
+        <img class="project-img" src="https://www.sketchappsources.com/resources/source-image/elegantmind-e-commerce-ui-kit-josetcastaneda.png" alt="E-Commerce UI project screenshot" />
+        <h3>Modern E-Commerce</h3>
+        <p>Frontend of a stylish e-commerce platform using React and Tailwind CSS.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="card">
+        <img class="project-img" src="https://onepagelove.imgix.net/2025/04/opl-master-9.jpg?w=540&max-h=540&fit=crop&fp-y=0&auto=compress" />
+        <h3>Interactive Landing Page</h3>
+        <p>Fully responsive landing page with scroll animations and conversion-focused design.</p>
+        <a href="#">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p>Let’s build something together.</p>
+    <p>
+      <a href="mailto:amarcheema454@gmail.com">Email</a> |
+      <a href="https://github.com/AmarCheema" target="_blank">GitHub</a> |
+      <a href="#">LinkedIn</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Amar Cheema. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", !expanded);
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial-card');
+
+    function showTestimonial(index) {
+      testimonials.forEach((el, i) => {
+        el.classList.remove('active');
+        if (i === index) el.classList.add('active');
+      });
+    }
+
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }, 3000);
+
+    showTestimonial(currentTestimonial);
+  </script>
+</body>
+</html>
