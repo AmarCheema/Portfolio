@@ -42,18 +42,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
+      padding: 1rem 1.5rem;
       background: var(--card);
       box-shadow: 0 0 10px rgba(0, 255, 231, 0.05);
     }
 
     .nav-links {
       list-style: none;
-      display: none;
+      display: flex;
+      gap: 1rem;
     }
 
     .nav-links li {
-      margin: 1rem 0;
+      margin: 0;
     }
 
     .nav-links a {
@@ -86,8 +87,8 @@
     }
 
     header img.profile-img {
-      width: 160px;
-      height: 160px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 0 20px var(--accent-soft);
@@ -95,7 +96,7 @@
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: var(--accent);
       text-shadow: 0 0 10px var(--accent-soft);
     }
@@ -126,6 +127,7 @@
     .grid {
       display: grid;
       gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 
     .skills, .projects {
@@ -192,6 +194,7 @@
       justify-content: center;
       align-items: center;
       padding: 3rem 0;
+      flex-direction: column;
     }
 
     .testimonial-card {
@@ -239,78 +242,52 @@
       padding: 2rem 1rem;
     }
 
-    /* Blog Section */
-    .blog-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .blog-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: 0 0 15px rgba(0, 255, 231, 0.05);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .blog-card img.blog-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 20px rgba(0, 255, 231, 0.2);
-    }
-
-    .read-more-btn {
-      margin-top: 1rem;
-      color: var(--accent);
-      font-weight: bold;
-      display: inline-block;
-    }
-
-    @media (min-width: 768px) {
-      .grid {
-        gap: 2.5rem;
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        padding: 1rem;
       }
-      .skills, .projects {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .nav-links {
-        display: flex !important;
-        gap: 1.5rem;
-        position: static;
-        background: none;
-        padding: 0;
-        box-shadow: none;
-      }
+
       .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        flex-direction: column;
         display: none;
       }
-      .blog-card {
-        flex-direction: row;
-        text-align: left;
-        gap: 1.5rem;
-      }
-      .blog-card img.blog-img {
-        width: 250px;
-        height: 160px;
-        flex-shrink: 0;
-      }
-    }
 
-    @media (min-width: 1024px) {
-      .skills, .projects {
-        grid-template-columns: repeat(3, 1fr);
+      .nav-links.show {
+        display: block;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .skills-logos img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .blog-card {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .blog-card img {
+        width: 100%;
+        height: 150px;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- The rest of your HTML code remains the same -->
+
+</body>
+</html>
 
   <nav>
     <a href="#" class="logo">Amar</a>
