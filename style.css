@@ -228,11 +228,14 @@ footer a:hover {
 }
 .blog-img {
   width: 100%;
-  height: auto;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  height: auto;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 255, 231, 0.2);
 }
+
 
 /* Blog Page */
 .blog-container {
@@ -332,5 +335,29 @@ footer a:hover {
   .profile-img,
   .project-img {
     transition: all 0.3s ease;
+.blog-img {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 231, 0.2);
+/* Hide hamburger on wider screens */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Show hamburger only on small screens */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+}
+
   }
 }
